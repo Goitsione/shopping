@@ -1,20 +1,97 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+
+
+
+<ion-header>
+  
+    <p>Lets Shop</p>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  
+  <form [formGroup]="itemForm" (ngsubmit)="addItem()">
+
+    <ion-item>
+      <ion-label position="floating">Item</ion-label>
+      <ion-input formControlName="item"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Number</ion-label>
+      <ion-input formControlName="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Price</ion-label>
+      <ion-input formControlName="price"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-button (click)="addItem()" [disabled]="itemForm.invalid">
+        <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+        &nbsp;Add item
+      </ion-button>
+    </ion-item>
+
+  </form>
+
+  <ion-card color="primary" *ngFor="let item of itemList,">
+    <span *ngIf="!tem.isEdit;  else elseBlock">
+      <ion-card-header>
+        <ion-card-title> {{item.item}} of {{item.number}} number </ion-card-title>
+                <ion-card-subtitle> {{item.price}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+
+        <ion-button shape="round" color="gold" size="small" (click)="EditItem(item                                                                                        )" >
+          <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+
+        </ion-button>
+        <ion-button shape="round" color="danger"  (click)="delete(item.id)" size="small">
+          <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+
+        </ion-button>
+      </ion-card-content>
+    </span>
+    <ng-template #elseBlock>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                Edit
+              </ion-col>
+              <ion-col>
+                <ion-button fill="solid" color="medium" size="small" (click)="item.isEdit = False">
+                  Cancel
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="solid" color="success" size="small" (click)="UpdateItem(item)">
+                  Update
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label><strong>Item</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="items.EditItem"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Number</strong></ion-label>
+          <ion-input type="text"[(ngModel)]="items.EditNumber" ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Price</strong></ion-label>
+          <ion-input type="text"[(ngModel)]="items.EditPrice"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ng-template>
+  </ion-card>
+    
+  <!-- </div> -->
 </ion-content>

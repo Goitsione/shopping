@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>edit-item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form [formGroup]="itemForm" (submit)="addItem()">
+
+  <ion-item>
+    <ion-label position="floating">Item</ion-label>
+    <ion-input formControlName="item"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Number</ion-label>
+    <ion-input formControlName="number"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Price</ion-label>
+    <ion-input formControlName="price"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-button >
+      <ion-icon size="small" slot="icon-only" name="edit"></ion-icon>
+      &nbsp;edit item
+    </ion-button>
+  </ion-item>
+
+</form>
+
+</ion-content>
